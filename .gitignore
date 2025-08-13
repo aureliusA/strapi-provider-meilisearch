@@ -1,0 +1,16 @@
+############################
+# Node.js
+############################
+
+node_modules
+.node_history
+
+
+.env
+.env.testing
+
+build
+.npmrc
+
+
+dist

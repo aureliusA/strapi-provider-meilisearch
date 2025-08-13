@@ -1,0 +1,48 @@
+{
+  "name": "strapi-provider-meilisearch",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "prebuild": "npm run lint",
+    "build": "tsc"
+  },
+  "author": {
+    "name": "Vadym Toporovskyi",
+    "email": "teoruz6@gmail.com"
+  },
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "meilisearch": "^0.50.0"
+  },
+  "main": "./dist/cjs/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aureliusA/strapi-provider-meilisearch"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": ">=5.0.0 <6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
+    "i": "^0.3.7",
+    "npm": "^11.5.2",
+    "typescript-eslint": "^8.39.1"
+  }
+}
