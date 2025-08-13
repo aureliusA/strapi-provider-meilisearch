@@ -40,7 +40,9 @@ module.exports = ({ env }) => ({
         config: {
             provider: 'meilisearch',
             providerOptions: {
-                apiKey: env('OPENAI_TOKEN'),
+                apiKey: env('MEILISEARCH_API_KEY'),
+                host: env('MEILISEARCH_HOST'),
+                indexName: env('MEILISEARCH_INDEX_NAME'),
             },
         },
     },
