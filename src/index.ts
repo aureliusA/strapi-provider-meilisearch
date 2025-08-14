@@ -21,10 +21,11 @@ export default {
     const index = meilisearchClient.index(indexName);
 
     return {
-      getClient() {
-        return meilisearchClient;
+      getIndex() {
+        return index;
       },
-      async searchDifferentIndexes({
+
+      async search({
         query,
         limit = 4,
         filter,
@@ -35,6 +36,11 @@ export default {
         };
 
         return await index.search(query, searchOptions);
+      },
+
+      async regenerateIndex(settings: MeilisearchSettings, data: Array<IndexRecordData>) {
+        await this.setSettings(settings);
+        await this.fillIndexContentTypeData(data);
       },
 
       async setSettings({
