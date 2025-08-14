@@ -38,6 +38,7 @@ export default {
         settings: MeilisearchSettings,
         data: Array<IndexRecordData>,
       ) {
+        await index.update({ primaryKey: 'documentId' });
         await this.setSettings(settings);
         await this.fillIndexContentTypeData(data);
       },
