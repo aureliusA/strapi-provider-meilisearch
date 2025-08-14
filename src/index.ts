@@ -25,11 +25,7 @@ export default {
         return index;
       },
 
-      async search({
-        query,
-        limit = 4,
-        filter,
-      }: PluginSearchParams) {
+      async search({ query, limit = 4, filter }: PluginSearchParams) {
         const searchOptions: SearchParams = {
           limit: limit,
           filter,
@@ -38,7 +34,10 @@ export default {
         return await index.search(query, searchOptions);
       },
 
-      async regenerateIndex(settings: MeilisearchSettings, data: Array<IndexRecordData>) {
+      async regenerateIndex(
+        settings: MeilisearchSettings,
+        data: Array<IndexRecordData>,
+      ) {
         await this.setSettings(settings);
         await this.fillIndexContentTypeData(data);
       },
