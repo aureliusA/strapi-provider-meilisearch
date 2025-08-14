@@ -6,7 +6,7 @@ export interface Options {
 export interface PluginSearchParams {
   query: string;
   limit?: number;
-  filter: Array<string>;
+  filter: string | undefined;
 }
 
 export interface IndexRecordData extends Record<string, string> {

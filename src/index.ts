@@ -25,10 +25,10 @@ export default {
         return index;
       },
 
-      async search({ query, limit = 4, filter }: PluginSearchParams) {
+      async search({ query, limit = 5, filter }: PluginSearchParams) {
         const searchOptions: SearchParams = {
           limit: limit,
-          filter,
+          filter: filter ? JSON.parse(filter) : undefined,
         };
 
         return await index.search(query, searchOptions);
