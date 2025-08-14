@@ -16,7 +16,7 @@
   "dependencies": {
     "meilisearch": "^0.50.0"
   },
-  "main": "./dist/cjs/index.js",
+  "main": "./dist/index.js",
   "source": "./src/index.ts",
   "types": "./dist/types.d.ts",
   "files": [
