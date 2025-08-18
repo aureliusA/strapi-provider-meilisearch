@@ -6,6 +6,7 @@ export interface Options {
 export interface PluginSearchParams {
   query: string;
   limit?: number;
+  offset?: number;
   filter: string | undefined;
 }
 
