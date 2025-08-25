@@ -1,5 +1,5 @@
 import { Meilisearch } from 'meilisearch';
-import type { SearchParams, Filter } from 'meilisearch';
+import type { SearchParams } from 'meilisearch';
 import {
   IndexRecordData,
   MeilisearchSettings,
@@ -31,13 +31,10 @@ export default {
         offset = 0,
         filter,
       }: PluginSearchParams) {
-        const parsedFilter: Filter | undefined = filter
-          ? (JSON.parse(filter) as unknown as Filter)
-          : undefined;
         const searchOptions: SearchParams = {
           limit,
           offset,
-          filter: parsedFilter,
+          filter,
         };
 
         return await index.search(query, searchOptions);
