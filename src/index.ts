@@ -44,27 +44,45 @@ export default {
         settings: MeilisearchSettings,
         data: Array<IndexRecordData>,
       ) {
-        await index.update({ primaryKey: 'documentId' });
-        await this.setSettings(settings);
-        await this.fillIndexContentTypeData(data);
+        await this.createTempIndexAndSwap(settings, data);
       },
 
-      async setSettings({
-        searchableFields,
-        filterableFields,
-      }: MeilisearchSettings) {
-        await index.updateSearchableAttributes(searchableFields);
-        await index.updateFilterableAttributes(filterableFields);
+      async setSettings(
+        { searchableFields, filterableFields }: MeilisearchSettings,
+        targetIndex = index,
+      ) {
+        await targetIndex.updateSearchableAttributes(searchableFields);
+        await targetIndex.updateFilterableAttributes(filterableFields);
       },
 
-      async fillIndexContentTypeData(data: Array<IndexRecordData>) {
-        await index.addDocuments(
+      async fillIndexContentTypeData(
+        data: Array<IndexRecordData>,
+        targetIndex = index,
+      ) {
+        await targetIndex.addDocuments(
           data.map((data) => ({
             ...data,
             id: data.documentId,
             contentType: data.contentType,
           })),
         );
+      },
+
+      async createTempIndexAndSwap(
+        settings: MeilisearchSettings,
+        data: Array<IndexRecordData>,
+      ) {
+        const tempIndexName = `${indexName}_temp_${Date.now()}`;
+        const tempIndex = meilisearchClient.index(tempIndexName);
+
+        await tempIndex.update({ primaryKey: 'documentId' });
+        await this.setSettings(settings, tempIndex);
+        await this.fillIndexContentTypeData(data, tempIndex);
+
+        await meilisearchClient.swapIndexes([
+          { indexes: [indexName, tempIndexName] },
+        ]);
+        await meilisearchClient.deleteIndex(tempIndexName);
       },
     };
   },
