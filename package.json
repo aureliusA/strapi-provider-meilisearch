@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-meilisearch",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "scripts": {
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prebuild": "npm run lint",
